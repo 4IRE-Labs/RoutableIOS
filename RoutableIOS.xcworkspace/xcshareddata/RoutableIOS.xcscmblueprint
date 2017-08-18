@@ -1,0 +1,50 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++E6BC711" : 9223372036854775807,
+    "95438028B10BBB846574013D29F154A00556A9D1+++E8CC249" : 9223372036854775807,
+    "95438028B10BBB846574013D29F154A00556A9D1+++61376E4" : 9223372036854775807,
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1" : 9223372036854775807,
+    "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "81150538-DCCC-45DE-BEFC-287DAF51AD8C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++E6BC711" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/",
+    "95438028B10BBB846574013D29F154A00556A9D1+++E8CC249" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
+    "95438028B10BBB846574013D29F154A00556A9D1+++61376E4" : "RoutableIOS\/Carthage\/Checkouts\/Nimble\/",
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1" : "RoutableIOS\/Carthage\/Checkouts\/xcconfigs\/",
+    "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RoutableIOS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "RoutableIOS.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1+++61376E4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1+++E8CC249"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Quick.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++E6BC711"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jspahrsummers\/xcconfigs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1"
+    }
+  ]
+}
