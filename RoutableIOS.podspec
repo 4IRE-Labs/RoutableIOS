@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
  s.homepage = 'http://seductive-mobile.com'
  s.social_media_url = 'https://www.facebook.com/malkevych'
  s.authors = { "Malkevych Bohdan Ihorovych" => "webslesar@gmail.com" }
- s.source = { :git => "https://github.com/webslesar/RoutableIOS.git", :tag => "v"+s.version.to_s }
+ s.source = { :git => "https://github.com/SeductiveMobile/RoutableIOS.git", :tag => "v"+s.version.to_s }
  s.platforms     = { :ios => "9.0" }
  s.requires_arc = true
 
