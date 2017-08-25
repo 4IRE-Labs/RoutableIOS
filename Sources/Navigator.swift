@@ -16,6 +16,8 @@ public enum NavigationContent {
     case replaceLast(vcs: [UIViewController], animated: Bool)
     case setAsRoot(vcs: [UIViewController], animated: Bool)
     case setAfterRoot(vcs: [UIViewController], animated: Bool)
+    case setAfter(vc: UIViewController, vcs: [UIViewController], animated: Bool)
+    case pop(to: UIViewController, animated: Bool)
     
     public func defaultIdentifier() -> String {
         switch self {
@@ -29,6 +31,10 @@ public enum NavigationContent {
             return defaultIdentifier(for: vcs)
         case .setAfterRoot(let vcs, _):
             return defaultIdentifier(for: vcs)
+        case .setAfter(_, let vcs, _):
+            return defaultIdentifier(for: vcs)
+        case .pop(to: let vc, _):
+            return vc.navigationIdentifier
         }
     }
     
@@ -72,6 +78,10 @@ extension UINavigationController: Navigatable, PropertyStoring {
             setAsRoot(vcs: vcs, animated: animated)
         case .setAfterRoot(let vcs, let animated):
             setAfterRoot(vcs: vcs, animated: animated)
+        case .setAfter(let vc, let vcs, let animated):
+            setAfter(vc: vc, vcs: vcs, animated: animated)
+        case .pop(to: let vc, let animated):
+            pop(to: vc, animated: animated)
         }
     }
     
@@ -104,6 +114,18 @@ extension UINavigationController: Navigatable, PropertyStoring {
         } else {
             setViewControllers(vcs, animated: animated)
         }
+    }
+    
+    private func setAfter(vc: UIViewController, vcs: [UIViewController], animated: Bool) {
+        guard let index = viewControllers.index(of: vc) else {
+            return
+        }
+        let newStack: [UIViewController] = viewControllers[0...index] + vcs
+        setViewControllers(newStack, animated: animated)
+    }
+    
+    private func pop(to vc: UIViewController, animated: Bool) {
+        popToViewController(vc, animated: animated)
     }
     
     public func canShowScreen(with identifier: String) -> Bool {

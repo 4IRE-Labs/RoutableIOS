@@ -1,4 +1,5 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FE3D48466C60F6ECE3A244B143B1A69676276AE4+++5F0667B",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
@@ -6,16 +7,18 @@
     "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++E6BC711" : 9223372036854775807,
     "95438028B10BBB846574013D29F154A00556A9D1+++E8CC249" : 9223372036854775807,
     "95438028B10BBB846574013D29F154A00556A9D1+++61376E4" : 9223372036854775807,
-    "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1" : 9223372036854775807,
-    "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E" : 9223372036854775807
+    "FE3D48466C60F6ECE3A244B143B1A69676276AE4+++5F0667B" : 9223372036854775807,
+    "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E" : 9223372036854775807,
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "81150538-DCCC-45DE-BEFC-287DAF51AD8C",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64+++E6BC711" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/",
     "95438028B10BBB846574013D29F154A00556A9D1+++E8CC249" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
     "95438028B10BBB846574013D29F154A00556A9D1+++61376E4" : "RoutableIOS\/Carthage\/Checkouts\/Nimble\/",
-    "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1" : "RoutableIOS\/Carthage\/Checkouts\/xcconfigs\/",
-    "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/"
+    "FE3D48466C60F6ECE3A244B143B1A69676276AE4+++5F0667B" : "RoutableIOS\/",
+    "95438028B10BBB846574013D29F154A00556A9D1+++B973A3E" : "RoutableIOS\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
+    "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1" : "RoutableIOS\/Carthage\/Checkouts\/xcconfigs\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "RoutableIOS",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -45,6 +48,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jspahrsummers\/xcconfigs.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E084C86B03F81D63323C9E7510697EA528A758C7+++0F79EB1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/SeductiveMobile\/RoutableIOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FE3D48466C60F6ECE3A244B143B1A69676276AE4+++5F0667B"
     }
   ]
 }
