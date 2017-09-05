@@ -9,6 +9,8 @@
 import UIKit
 
 public typealias CompletionPresenting = () -> Void
+public typealias FoundDestination = (_ found: Bool) -> Void
+public typealias DestinationPredicat = (UIViewController) -> Bool
 
 public enum NavigationContent {
     case push(vcs: [UIViewController], animated: Bool)
@@ -18,6 +20,7 @@ public enum NavigationContent {
     case setAfterRoot(vcs: [UIViewController], animated: Bool)
     case setAfter(vc: UIViewController, vcs: [UIViewController], animated: Bool)
     case pop(to: UIViewController, animated: Bool)
+    case popWith(predicate: DestinationPredicat, animated: Bool, foundHandler: FoundDestination)
     
     public func defaultIdentifier() -> String {
         switch self {
@@ -35,6 +38,8 @@ public enum NavigationContent {
             return defaultIdentifier(for: vcs)
         case .pop(to: let vc, _):
             return vc.navigationIdentifier
+        case .popWith:
+            fatalError("No default identifier for popWith predicate")
         }
     }
     
@@ -82,6 +87,8 @@ extension UINavigationController: Navigatable, PropertyStoring {
             setAfter(vc: vc, vcs: vcs, animated: animated)
         case .pop(to: let vc, let animated):
             pop(to: vc, animated: animated)
+        case .popWith(let predicate, let animated, let foundHandler):
+            pop(with: predicate, animated: animated, foundDestinationHandler: foundHandler)
         }
     }
     
@@ -126,6 +133,17 @@ extension UINavigationController: Navigatable, PropertyStoring {
     
     private func pop(to vc: UIViewController, animated: Bool) {
         popToViewController(vc, animated: animated)
+    }
+    
+    private func pop(with predicate: DestinationPredicat,
+                     animated: Bool,
+                     foundDestinationHandler: FoundDestination?) {
+        if let vc = viewControllers.first(where: predicate) {
+            foundDestinationHandler?(true)
+            popToViewController(vc, animated: animated)
+        } else {
+            foundDestinationHandler?(false)
+        }
     }
     
     public func canShowScreen(with identifier: String) -> Bool {
