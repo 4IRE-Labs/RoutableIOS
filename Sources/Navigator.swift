@@ -9,7 +9,8 @@
 import UIKit
 
 public typealias CompletionPresenting = () -> Void
-public typealias FoundDestination = (_ found: Bool) -> Void
+/* if destination VC not found calls */
+public typealias NotFoundDestination = () -> Void
 public typealias DestinationPredicat = (UIViewController) -> Bool
 
 public enum NavigationContent {
@@ -20,7 +21,8 @@ public enum NavigationContent {
     case setAfterRoot(vcs: [UIViewController], animated: Bool)
     case setAfter(vc: UIViewController, vcs: [UIViewController], animated: Bool)
     case pop(to: UIViewController, animated: Bool)
-    case popWith(predicate: DestinationPredicat, animated: Bool, foundHandler: FoundDestination)
+    case popWith(predicate: DestinationPredicat, animated: Bool,
+        notFoundHandler: NotFoundDestination)
     
     public func defaultIdentifier() -> String {
         switch self {
@@ -88,7 +90,7 @@ extension UINavigationController: Navigatable, PropertyStoring {
         case .pop(to: let vc, let animated):
             pop(to: vc, animated: animated)
         case .popWith(let predicate, let animated, let foundHandler):
-            pop(with: predicate, animated: animated, foundDestinationHandler: foundHandler)
+            pop(with: predicate, animated: animated, notFoundDestinationHandler: foundHandler)
         }
     }
     
@@ -137,12 +139,11 @@ extension UINavigationController: Navigatable, PropertyStoring {
     
     private func pop(with predicate: DestinationPredicat,
                      animated: Bool,
-                     foundDestinationHandler: FoundDestination?) {
+                     notFoundDestinationHandler: NotFoundDestination?) {
         if let vc = viewControllers.first(where: predicate) {
-            foundDestinationHandler?(true)
             popToViewController(vc, animated: animated)
         } else {
-            foundDestinationHandler?(false)
+            notFoundDestinationHandler?()
         }
     }
     
