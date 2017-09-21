@@ -109,7 +109,7 @@ extension UINavigationController: Navigatable, PropertyStoring {
     private func replaceLast(vcs: [UIViewController], animated: Bool) {
         var copyViewControllers = self.viewControllers
         let _ = copyViewControllers.popLast()
-        let viewControllers = copyViewControllers + self.viewControllers
+        let viewControllers = copyViewControllers + vcs
         setViewControllers(viewControllers, animated: animated)
     }
     
