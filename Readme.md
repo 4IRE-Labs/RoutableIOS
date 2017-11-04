@@ -27,7 +27,7 @@ Your application has three or more tabs: «Feed», «Dialogs», «Settings».
 
 Example 1: You open the app, go to «Feed» then find a great post and now you want to contact the author of the article. So you open his profile and see a button saying «Chat with Author». When you tap on it your application redirects you to «Dialogs» tab and opens the chat with this Author.
 
-![RoutableIOS: Elegant Routable in Swift](https://raw.githubusercontent.com/seductive-mobile/RoutableIOS/master/routable_ios_example.PNG)
+![RoutableIOS: Elegant Routable in Swift](https://github.com/SeductiveMobile/RoutableIOS/blob/master/routable_ios_example.png?raw=true)
 
 ### Definitions: 
 
