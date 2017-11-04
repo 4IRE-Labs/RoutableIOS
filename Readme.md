@@ -10,12 +10,56 @@
 [![Travis](https://img.shields.io/travis/seductive-mobile/RoutableIOS/master.svg)](https://travis-ci.org/seductive-mobile/RoutableIOS/branches)
 [![JetpackSwift](https://img.shields.io/badge/JetpackSwift-framework-red.svg)](http://github.com/JetpackSwift/Framework)
 
-It is framework implemented to help manage your IOS app routing
+Efficient way to manage routing in your app!
 
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
+
+
+Feeling weird while doing some routing between tabs in iOS or just using navigation controllers?
+
+RoutableIOS - makes routing in your app more efficient and elegant. It is a very simple and powerful tool to manage changing between tabs in your application or just moving within stack in your UINavigationController. All you need to do is just to set which event name each of your tabs can open.
+
+So, just imagine, you have an IOS app and the app has several tabs. No matter what you use UITabBarController, a Side Menu or other pods give you such functional.
+Your application has three or more tabs: «Feed», «Dialogs», «Settings».
+
+Example 1: You open the app, go to «Feed» then find a great post and now you want to contact the author of the article. So you open his profile and see a button saying «Chat with Author». When you tap on it your application redirects you to «Dialogs» tab and opens the chat with this Author.
+
+![RoutableIOS: Elegant Routable in Swift](https://raw.githubusercontent.com/seductive-mobile/RoutableIOS/master/routable_ios_example.PNG)
+
+### Definitions: 
+
+- UIViewControllers - all blue blocks
+- UITabBarController - green block
+- UINavigationControllers - all tall colored blocks
+
+
+Example 2: Now you are on a tab and your application suggests you to do some modifications, for example, in the app settings (In «Settings» tab).
+
+So, there are a lot of situations when you have to manage your routing between different tabs in an efficient way and traditional methods are not very useful, furthermore, in some situations are too nasty to want to use them.
+
+It can be solved by using just notifications or delegates or using other tools, but what if we add more conditions? 
+
+Here are some of them:
+
+you want to open your array of ViewControllers on a specific tab from any screen after the root ViewController; 
+you want to replace the whole ViewControllers stack in a specific tab with your own ones; 
+you want to add some ViewControllers after a specific UIViewController that is already presented in a current stack and etc. 
+
+It can still be resolved by traditional methods, but it becomes much uglier, there is more and more code.
+
+In general, we create observers somewhere in the instance of YourTabBarController and delegate this work to it. As a result you have a huge YourTabBarController class. Yes, we can divide it into different files, but it will not save us. 
+
+
+### Why routableIOS?
+
+- It is simple to use
+- You don’t need any inheritance from framework’s files!
+- Elegant way to manage switching between tabs
+- Incredible decision to move/extend stacks in UINavigationControllers
+
 
 ## Requirements
 
@@ -41,7 +85,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'RoutableIOS', '~> 0.0.1'
+pod 'RoutableIOS', '~> 0.0.5'
 ```
 
 Then, run the following command:
@@ -64,7 +108,7 @@ $ brew install carthage
 To integrate RoutableIOS into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "RoutableIOS/RoutableIOS" ~> 0.0.1
+github "RoutableIOS/RoutableIOS" ~> 0.0.5
 ```
 ### Swift Package Manager
 
@@ -76,7 +120,7 @@ import PackageDescription
 let package = Package(
     name: "HelloRoutableIOS",
     dependencies: [
-        .Package(url: "https://github.com/seductive-mobile/RoutableIOS.git", "0.0.1")
+        .Package(url: "https://github.com/seductive-mobile/RoutableIOS.git", "0.0.5")
     ]
 )
 ```
@@ -128,6 +172,111 @@ $ git submodule update --init --recursive
 - And that's it!
 
 ## Usage
+
+For example you have 3 tabs in YourTabBarViewController:
+
+```bash
+var feedNavigator: UINavigationController = UINavigationController()
+var dialogNavigator: UINavigationController = UINavigationController()
+var settingsNavigator: UINavigationController = UINavigationController()
+```
+
+1) You need to conform protocol TabRouterProtocol from RoutableIOS, for example in YourTabBarViewController instance.
+
+```bash
+protocol TabRouterProtocol {
+// calls when applications want to tell you: «I want to switch to tab with navigator».
+    func setActive(navigator: UINavigationController)
+
+// There are your: «Feed», «Dialogs», «Settings» and etc.
+    var allNavigators: [UINavigationController] { get }
+}
+```
+
+Implementation:
+
+```bash
+func setActive(navigator: UINavigationController) {
+	self.selectedViewController = navigator
+}
+
+var allNavigators = [feedNavigator, dialogNavigator, settingsNavigator]
+```
+
+2) You must register event names which can open them.
+For example, dialogs navigation controller can open dialogs and chats.
+
+So, lets register it.
+
+```bash
+dialogNavigator.registerNavigation(for: "openDialog")
+dialogNavigator.registerNavigation(for: "openChat")
+
+settingsNavigator.registerNavigation(for: "openSettings")
+settingsNavigator.registerNavigation(for: "openSpecificSetting")
+```
+
+So, that is it!
+
+Now, if you want to open a chat with any user, you have to:
+
+```bash
+import RoutableIOS
+…
+var tabBar: YourTabBarViewController = …
+var someUser: User = …
+…
+let vc = UIChatViewController(with: someUser)
+let navigationContent = NavigationContent.setAfterRoot(vcs: [vc], animated: false)
+tabBar.show(content: navigationContent, identifier: "openChat")
+```
+
+As you can see, after calling tabBar.show(…) application will switch tab to «Dialogs» and set UIChatViewController after rootViewController.
+
+There are all NavigationContent types:
+
+```bash
+public enum NavigationContent {
+    // add to current stack vcs
+    case push(vcs: [UIViewController], animated: Bool)
+
+    // show modally vc
+    case modal(vc: UIViewController, animated: Bool, completion: RoutableIOS.CompletionPresenting?)
+
+    // replace last vc with our view controllers
+    case replaceLast(vcs: [UIViewController], animated: Bool)
+
+    // set our vcs as root
+    case setAsRoot(vcs: [UIViewController], animated: Bool)
+
+    // set vcs straight after rootViewController
+    case setAfterRoot(vcs: [UIViewController], animated: Bool)
+
+    // set our vcs straight after vc
+    case setAfter(vc: UIViewController, vcs: [UIViewController], animated: Bool)
+
+    // pop to specific vc
+    case pop(to: UIViewController, animated: Bool)
+
+    // pop with specific predicate
+    case popWith(predicate: RoutableIOS.DestinationPredicat, animated: Bool, notFoundHandler: RoutableIOS.NotFoundDestination)
+}
+```
+
+Can I use NavigationContent to move through current UINavigationController stack?
+YES!
+
+```bash
+class SomeVC: UIViewController {
+	 func moveToChats(withUser user: User) {
+		let vc = UIChatViewController(with: user)
+		let navigationContent = NavigationContent.push(vcs: [vc], animated: false)
+		navigationController?.show(content: navigationContent, identifier: "openChat")
+	 }
+}
+```
+
+After this article I invite you to play with the playground I’ve prepared for you in pod repo. Keep in touch and feel free to make pull requests!
 
 ## License
 
