@@ -44,9 +44,9 @@ It can be solved by using just notifications or delegates or using other tools, 
 
 Here are some of them:
 
-you want to open your array of ViewControllers on a specific tab from any screen after the root ViewController; 
-you want to replace the whole ViewControllers stack in a specific tab with your own ones; 
-you want to add some ViewControllers after a specific UIViewController that is already presented in a current stack and etc. 
+- you want to open your array of ViewControllers on a specific tab from any screen after the root ViewController;
+- you want to replace the whole ViewControllers stack in a specific tab with your own ones;
+- you want to add some ViewControllers after a specific UIViewController that is already presented in a current stack and etc. 
 
 It can still be resolved by traditional methods, but it becomes much uglier, there is more and more code.
 
@@ -181,7 +181,7 @@ var dialogNavigator: UINavigationController = UINavigationController()
 var settingsNavigator: UINavigationController = UINavigationController()
 ```
 
-1) You need to conform protocol TabRouterProtocol from RoutableIOS, for example in YourTabBarViewController instance.
+### 1) You need to conform protocol TabRouterProtocol from RoutableIOS, for example in YourTabBarViewController instance.
 
 ```bash
 protocol TabRouterProtocol {
@@ -197,13 +197,13 @@ Implementation:
 
 ```bash
 func setActive(navigator: UINavigationController) {
-	self.selectedViewController = navigator
+    self.selectedViewController = navigator
 }
 
 var allNavigators = [feedNavigator, dialogNavigator, settingsNavigator]
 ```
 
-2) You must register event names which can open them.
+### 2) You must register event names which can open them.
 For example, dialogs navigation controller can open dialogs and chats.
 
 So, lets register it.
@@ -218,7 +218,7 @@ settingsNavigator.registerNavigation(for: "openSpecificSetting")
 
 So, that is it!
 
-Now, if you want to open a chat with any user, you have to:
+### 3) Now, if you want to open a chat with any user, you have to:
 
 ```bash
 import RoutableIOS
@@ -263,16 +263,16 @@ public enum NavigationContent {
 }
 ```
 
-Can I use NavigationContent to move through current UINavigationController stack?
-YES!
+- Can I use NavigationContent to move through current UINavigationController stack?
+- YES!
 
 ```bash
 class SomeVC: UIViewController {
-	 func moveToChats(withUser user: User) {
-		let vc = UIChatViewController(with: user)
-		let navigationContent = NavigationContent.push(vcs: [vc], animated: false)
-		navigationController?.show(content: navigationContent, identifier: "openChat")
-	 }
+    func moveToChats(withUser user: User) {
+        let vc = UIChatViewController(with: user)
+        let navigationContent = NavigationContent.push(vcs: [vc], animated: false)
+        navigationController?.show(content: navigationContent, identifier: "openChat")
+    }
 }
 ```
 
